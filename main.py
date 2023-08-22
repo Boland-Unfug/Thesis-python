@@ -1,5 +1,8 @@
 import sys
 import agent
+import titfortat_agent
+import selfish_agent
+import selfless_agent
 
 # rules
 # C - C = 3, 3
@@ -8,29 +11,33 @@ import agent
 # D - D = 1, 1
 
 def main():
-    player_1 = agent.Agent(strategy='C')
-    player_2 = agent.Agent(strategy='D')
-
-    for i in range(1, 10):
-        #both players play
-        print("Round " + str(i))
-        play_1 = player_1.play()
-        play_2 = player_2.play()
-
-        #Update memory of each player
-        player_1.memorize([player_1, play_1])
-        player_1.memorize_opponent([player_2, play_2])
-        player_2.memorize([player_2, play_2])
-        player_2.memorize_opponent([player_1, play_1])
-        
-
-        result_1, result_2 = prisoner_dilemma(player_1.play(), player_2.play())
-        player_1.change_score(result_1)
-        player_2.change_score(result_2)
-        
-
-        print("Player 1 score: " + str(player_1.get_score()))
-        print("Player 2 score: " + str(player_2.get_score()))
+        # # get the number of rounds
+        rounds = int(10)
+        # # get the agents
+        # agent_1 = sys.argv[2]
+        # agent_2 = sys.argv[3]
+        # create the agents
+        agent_1 = titfortat_agent.titfortat()
+        agent_2 = selfish_agent.selfish()
+        # play the game
+        for i in range(rounds):
+                play_1 = agent_1.play()
+                play_2 = agent_2.play()
+                # print("play: ", play_1, play_2)
+                score_1, score_2 = prisoner_dilemma(play_1, play_2)
+                # print("score: ", score_1, score_2)
+                agent_1.change_score(score_1)
+                agent_2.change_score(score_2)
+                # print("agent score: ", agent_1.get_score(), agent_2.get_score())
+                agent_1.forget()
+                agent_2.forget()
+                agent_1.memorize(play_1)
+                agent_2.memorize(play_2)
+                agent_1.memorize_opponent(play_2)
+                agent_2.memorize_opponent(play_1)
+        # print the score
+        print("agent 1: ", agent_1.get_score())
+        print("agent 2: ", agent_2.get_score())
 
 def prisoner_dilemma(play_1, play_2):
         score_1 = 0

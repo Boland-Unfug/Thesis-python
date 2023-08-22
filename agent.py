@@ -26,38 +26,39 @@ class Agent():
     opponent_memory = []
 
     
-    def __init__(self, opponent_memory, self_memory, score):
+    def __init__(self):
         pass
 
     def get_score(self):
-        pass
+        return self.score
 
     def change_score(self, score):
-        pass
+        self.score += score
 
     def set_score(self, score):
-        pass
+        self.score = score
 
     def play(self):
         pass
 
     def memorize(self, state):
-        pass
+        self.self_memory.append(state)
 
-    def memorize_opponent(self, state):
-        pass
+    def memorize_opponent(self, move):
+        self.opponent_memory.append(move)
 
     def forget_move(self):
-        pass
+        self.self_memory.pop()
 
     def forget_opponent_move(self):
-        pass
+        self.opponent_memory.pop()
 
     def forget(self):
-        pass
+        self_memory = []
+        self.opponent_memory = []
 
     def get_memory(self):
-        pass
+        return self.self_memory
 
     def get_opponent_memory(self):
-        pass
+        return self.opponent_memory
