@@ -1,0 +1,8 @@
+Goals for tomarrow:
+set up base agent class X
+set up tit for tat, evil, and good agents X
+
+set up basic implementation for main class X
+Add game class X
+Add visualization
+- I want it to show the strategy, each win, and update the score.

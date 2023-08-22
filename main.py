@@ -5,32 +5,26 @@ import selfish_agent
 import selfless_agent
 import world
 import game
+import visual
 
 def main():
         """
         The main method runs the game.
         """
         # create the world
-        stage = world.World()
-        #print(stage.get_grid())
-        #print(stage.get_size())
-        #print(stage.get_agents())
+        game_world = world.World()
         # create the agents
-        agents = stage.get_agents()
+        game_agents = game_world.get_agents()
+        # create the visual
+        game_display = visual.Visual(game_world, game_agents)
+        # display the world
+        
+        # update the neighbors
+        game_world.update_neighbors()
         # play the game
-        stage.update_neighbors()
-        # print(agents)
-        # print(len(agents))
-        # for i in range(len(agents)):
-        #         print("Agent",i,":", agents[i])
-        #         print(len(agents[i].get_neighbors()))
-        #         for j in range(len(agents[i].get_neighbors())):
-        #                 print("Neighbor",j,":",agents[i].get_neighbors()[j])
+        turn = game.Game(game_world, game_agents)
+        turn.play()
 
-        board = game.Game(stage, agents)
-        board.play()
-        for agent in agents:
-                print(agent, "", agent.get_score())
         
 
 
