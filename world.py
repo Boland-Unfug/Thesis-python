@@ -70,13 +70,17 @@ class World():
         """
         The update_neighbors method updates the neighbors of the agents.
         """
-        neighbors = []
         for i in range(self.size):
             for j in range(self.size):
                 current_agent = self.grid[i][j]
+                neighbors = []
                 for k in range(i-1, i+2):
                     for l in range(j-1, j+2):
-                        if (k >= 0 and k < self.size and l >= 0 and l < self.size and (k != i and l != j)):
+                        # print("i:",i,"j:",j,"k:",k,"l:",l)
+                        # if it is not the current agent
+                        if (k >= 0 and k < self.size and l >= 0 and l < self.size and (k != i or l != j)):
+                            #print("triggered")
+                            # neighbors.append([self.grid[k][l], k, l])
                             neighbors.append(self.grid[k][l])
                 current_agent.set_neighbors(neighbors)
 

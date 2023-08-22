@@ -8,7 +8,6 @@ class Titfortat(agent.Agent):
     It inherits the score, the memory functions, and the helper functions of the Agent class.
     Its strategy is to cooperate on the first move, then copy the opponent's previous move.
     """
-    
     def __init__(self):
         """
         The constructor for the titfortat class.
@@ -24,3 +23,6 @@ class Titfortat(agent.Agent):
         if len(self.opponent_memory) == 0:
             return 'C'
         return self.opponent_memory[0] #starting off with only one move in memory
+
+    def __str__(self):
+        return "Titfortat"

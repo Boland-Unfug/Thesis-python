@@ -8,7 +8,6 @@ class Selfish(agent.Agent):
     It inherits the score, the memory functions, and the helper functions of the Agent class.
     Its strategy is to always defect.
     """
-    
     def __init__(self):
         """
         The constructor for the selfish class.
@@ -22,3 +21,6 @@ class Selfish(agent.Agent):
         It returns 'D' for defect.
         """
         return 'D'
+
+    def __str__(self):
+        return "Selfish"
