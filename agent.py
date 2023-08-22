@@ -68,9 +68,13 @@ class Agent():
 
     def get_neighbors(self):
         return self.neighbors
+        
 
     def set_neighbors(self, neighbors):
         self.neighbors = neighbors
 
     def add_neighbor(self, neighbor):
         self.neighbors.append(neighbor)
+
+    def __str__(self):
+        return "None"
