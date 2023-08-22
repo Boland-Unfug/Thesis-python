@@ -19,11 +19,14 @@ class Agent():
     forget() resets the memory of the agent
     get_memory() returns the memory of the agent
     get_opponent_memory() returns the memory of the opponent
+    get_neighbors() returns the neighbors of the agent
+    set_neighbors() sets the neighbors of the agent
     """
 
     score = 0
     self_memory = []
     opponent_memory = []
+    neighbors = []
 
     
     def __init__(self):
@@ -38,7 +41,7 @@ class Agent():
     def set_score(self, score):
         self.score = score
 
-    def play(self):
+    def strategy(self):
         pass
 
     def memorize(self, state):
@@ -62,3 +65,12 @@ class Agent():
 
     def get_opponent_memory(self):
         return self.opponent_memory
+
+    def get_neighbors(self):
+        return self.neighbors
+
+    def set_neighbors(self, neighbors):
+        self.neighbors = neighbors
+
+    def add_neighbor(self, neighbor):
+        self.neighbors.append(neighbor)

@@ -2,7 +2,7 @@
 
 import agent
 
-class titfortat(agent.Agent):
+class Titfortat(agent.Agent):
     """
     The titfortat class is a subclass of the Agent class.
     It inherits the score, the memory functions, and the helper functions of the Agent class.
@@ -16,7 +16,7 @@ class titfortat(agent.Agent):
         """
         self.score = 0
 
-    def play(self):
+    def strategy(self):
         """
         The play method returns the move of the agent.
         It returns 'C' for cooperate.
