@@ -15,14 +15,14 @@ class Titfortat(agent.Agent):
         """
         self.score = 0
 
-    def strategy(self):
+    def strategy(self, opponent_memory):
         """
         The play method returns the move of the agent.
         It returns 'C' for cooperate.
         """
-        if len(self.opponent_memory) == 0:
+        if opponent_memory == []:
             return 'C'
-        return self.opponent_memory[0] #starting off with only one move in memory
+        return opponent_memory[0] #starting off with only one move in memory
 
     def __str__(self):
         return "Titfortat"

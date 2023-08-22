@@ -17,15 +17,17 @@ class World():
     get_agents() returns the agents
     update_neighbors() returns the neighbors of the agents
     """
-    size = 3
+    size = 1
     grid = []
     agents = []
     
-    def __init__(self):
+    def __init__(self, size=3):
         """
         The constructor for the world class.
-        It creates a 2x2 grid.
+        It crea
+        tes a grid.
         """
+        self.size = size
         self.grid = [[0 for x in range(self.size)] for y in range(self.size)]
         self.agents = []
         for i in range(self.size):
@@ -40,11 +42,11 @@ class World():
         """
         agent_type = random.randint(0,2)
         if agent_type == 0:
-            self.agents.append(titfortat_agent.Titfortat())
+            self.agents.append(selfless_agent.Selfless())
         elif agent_type == 1:
             self.agents.append(selfish_agent.Selfish())
         else:
-            self.agents.append(selfless_agent.Selfless())
+            self.agents.append(titfortat_agent.Titfortat())
 
     
 
@@ -76,11 +78,7 @@ class World():
                 neighbors = []
                 for k in range(i-1, i+2):
                     for l in range(j-1, j+2):
-                        # print("i:",i,"j:",j,"k:",k,"l:",l)
-                        # if it is not the current agent
                         if (k >= 0 and k < self.size and l >= 0 and l < self.size and (k != i or l != j)):
-                            #print("triggered")
-                            # neighbors.append([self.grid[k][l], k, l])
                             neighbors.append(self.grid[k][l])
                 current_agent.set_neighbors(neighbors)
 

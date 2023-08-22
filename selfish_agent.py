@@ -15,7 +15,7 @@ class Selfish(agent.Agent):
         """
         self.score = 0
 
-    def strategy(self):
+    def strategy(self, opponent_memory):
         """
         The play method returns the move of the agent.
         It returns 'D' for defect.

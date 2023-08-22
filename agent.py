@@ -25,7 +25,6 @@ class Agent():
 
     score = 0
     self_memory = []
-    opponent_memory = []
     neighbors = []
 
     
@@ -47,24 +46,15 @@ class Agent():
     def memorize(self, state):
         self.self_memory.append(state)
 
-    def memorize_opponent(self, move):
-        self.opponent_memory.append(move)
-
     def forget_move(self):
-        self.self_memory.pop()
-
-    def forget_opponent_move(self):
-        self.opponent_memory.pop()
+        if self.self_memory != []:
+            self.self_memory.pop()
 
     def forget(self):
         self_memory = []
-        self.opponent_memory = []
 
     def get_memory(self):
         return self.self_memory
-
-    def get_opponent_memory(self):
-        return self.opponent_memory
 
     def get_neighbors(self):
         return self.neighbors

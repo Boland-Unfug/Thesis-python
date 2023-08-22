@@ -2,7 +2,9 @@
 
 import agent
 import world
+import visual
 
+import time
 class Game():
     """
     The game class contains the world and the agents.
@@ -23,24 +25,41 @@ class Game():
         self.agents = agents
 
     def play(self):
+        for agent in self.agents:
+            self.play_neighbors(agent)
+
+    def play_neighbors(self):
         """
         The play method plays the game.
         It iterates through the agents and plays the game.
         """
-        for agent in self.agents:
-            for neighbors in agent.get_neighbors():
-                play_1 = agent.strategy()
-                play_2 = neighbors.strategy()
-                print(agent, "played", play_1, "and", neighbors, "played", play_2)
-                score_1, score_2 = self.prisoners_dillema(play_1, play_2)
-                agent.change_score(score_1)
-                neighbors.change_score(score_2)
-                agent.forget()
-                neighbors.forget()
-                agent.memorize(play_1)
-                neighbors.memorize(play_2)
-                agent.memorize_opponent(play_2)
-                neighbors.memorize_opponent(play_1)
+        for neighbors in self.agent.get_neighbors():
+            print("agent " + str(agent) + " is playing agent " + str(neighbors))
+            self.duel(agent, neighbors)
+
+
+    def duel(self, agent, neighbor):
+        """
+        The duel method plays the game between two agents.
+        It takes in two agents and plays the game between them.
+        """
+
+        play_1 = agent.strategy(neighbor.get_memory())
+        play_2 = neighbor.strategy(agent.get_memory())
+        score_1, score_2 = self.prisoners_dillema(play_1, play_2)
+        if (str(agent) == "Titfortat" and str(neighbor) == "Selfish") or (str(agent) == "Selfish" and str(neighbor) == "Titfortat"):
+            print("agent " + str(agent) + " is playing agent " + str(neighbor))
+            print("agent " + str(agent) + " is playing " + play_1)
+            print("agent " + str(neighbor) + " is playing " + play_2)
+            time.sleep(5)
+        agent.change_score(score_1)
+        neighbor.change_score(score_2)
+        agent.forget_move()
+        neighbor.forget_move()
+        agent.memorize(play_1)
+        neighbor.memorize(play_2)
+        
+
 
 
     def prisoners_dillema(self, move_1, move_2):
