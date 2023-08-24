@@ -24,11 +24,12 @@ class Agent():
     """
 
     score = 0
-    self_memory = []
+    name = ""
+    memory = []
     neighbors = []
 
     
-    def __init__(self):
+    def __init__(self, name):
         pass
 
     def get_score(self):
@@ -44,17 +45,17 @@ class Agent():
         pass
 
     def memorize(self, state):
-        self.self_memory.append(state)
+        self.memory.append(state)
 
     def forget_move(self):
-        if self.self_memory != []:
-            self.self_memory.pop()
+        if self.memory != []:
+            self.memory.pop()
 
     def forget(self):
-        self_memory = []
+        memory = []
 
     def get_memory(self):
-        return self.self_memory
+        return self.memory
 
     def get_neighbors(self):
         return self.neighbors
@@ -65,6 +66,9 @@ class Agent():
 
     def add_neighbor(self, neighbor):
         self.neighbors.append(neighbor)
+
+    def get_name(self):
+        return self.name
 
     def __str__(self):
         return "None"

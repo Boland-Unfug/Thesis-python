@@ -8,11 +8,12 @@ class Selfless(agent.Agent):
     It inherits the score, the memory functions, and the helper functions of the Agent class.
     Its strategy is to always cooperate.
     """
-    def __init__(self):
+    def __init__(self, name):
         """
         The constructor for the selfish class.
         It sets the score of the agent to 0.
         """
+        self.name = name
         self.score = 0
 
     def strategy(self, opponent_memory):

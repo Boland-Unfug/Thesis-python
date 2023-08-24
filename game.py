@@ -13,8 +13,8 @@ class Game():
     get_agents() returns the agents
     play() plays the game
     """
-    world = world.World()
-    agents = world.get_agents()
+    world = None
+    agents = None
     
     def __init__(self, world, agents):
         """
@@ -51,13 +51,14 @@ class Game():
             print("agent " + str(agent) + " is playing agent " + str(neighbor))
             print("agent " + str(agent) + " is playing " + play_1)
             print("agent " + str(neighbor) + " is playing " + play_2)
-            time.sleep(5)
+            # time.sleep(5)
         agent.change_score(score_1)
         neighbor.change_score(score_2)
         agent.forget_move()
         neighbor.forget_move()
-        agent.memorize(play_1)
-        neighbor.memorize(play_2)
+        state = (agent.get_name(), play_1, neighbor.get_name(), play_2)
+        agent.memorize(state)
+        neighbor.memorize(state)
         
 
 

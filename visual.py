@@ -18,11 +18,12 @@ class Visual():
     label_agents() labels the agents
     flip() flips the screen
     """
-    world = world.World()
-    agents = world.get_agents()
-    cells = world.get_size()
-    cell_size = 500 / cells
-    screen = pygame.display.set_mode((cells * cell_size, cells * cell_size))
+    
+    world = None
+    agents = None
+    cells = None
+    cell_size = None
+    screen = pygame.display.set_mode((100, 100))
     pygame.display.set_caption("Prisoner's Dilemma")
 
     def __init__(self, world, agents):

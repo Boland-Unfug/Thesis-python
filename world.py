@@ -21,34 +21,18 @@ class World():
     grid = []
     agents = []
     
-    def __init__(self, size=3):
+    def __init__(self, size=3, agents=[]):
         """
         The constructor for the world class.
         It crea
         tes a grid.
         """
         self.size = size
+        self.agents = agents
         self.grid = [[0 for x in range(self.size)] for y in range(self.size)]
-        self.agents = []
         for i in range(self.size):
             for j in range(self.size):
-                self.add_agent()
-                self.grid[i][j] = self.agents[-1]
-
-    def add_agent(self):
-        """
-        The add_agent method adds an agent to the grid.
-        It adds a random agent.
-        """
-        agent_type = random.randint(0,2)
-        if agent_type == 0:
-            self.agents.append(selfless_agent.Selfless())
-        elif agent_type == 1:
-            self.agents.append(selfish_agent.Selfish())
-        else:
-            self.agents.append(titfortat_agent.Titfortat())
-
-    
+                self.grid[i][j] = self.agents[i*self.size + j]
 
     def get_grid(self):
         """
