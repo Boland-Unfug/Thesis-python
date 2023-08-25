@@ -47,20 +47,26 @@ def main():
                 # play the game
                 turn = game.Game(game_world, agents)
                 # I want to add a loop that allows for me to see each individual game between two agents
-                agent_num = 0
-                for agent in agents:
-                        agent_num += 1
-                        neighbor_num = 0
-                        for neighbor in agent.get_neighbors():
-                                neighbor_num += 1
+                # agent_num = 0
+                # for agent in agents:
+                #         agent_num += 1
+                #         neighbor_num = 0
+                #         for neighbor in agent.get_neighbors():
+                #                 neighbor_num += 1
                                 
-                                #print the agents position
-                                print("agent " + str(agent_num) + " is playing agent " + str(neighbor_num))
+                #                 #print the agents position
+                #                 print("agent " + str(agent_num) + " is playing agent " + str(neighbor_num))
                                 
-                                turn.duel(agent, neighbor)
-                                # pygame.time.wait(5000)
-                                pygame.display.flip()
-                # display the world
+                #                 turn.duel(agent, neighbor)
+                #                 # pygame.time.wait(5000)
+                #                 pygame.display.flip()
+                # # display the world
+
+                turn.play()
+                game_display.draw_agents(game_display.screen)
+                pygame.display.flip()
+
+
 
                                 
                 

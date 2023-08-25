@@ -8,3 +8,6 @@ Add visualization
 - I want it to show the strategy, each win, and update the score.
 so far I show the strategy and update the score
 I want to make the memory work for tit-for-tat, its due to it not remembering 'faces', but just having a general memory of neighbors
+
+to work on:
+make memory a hash map, where every agent is the key to a move in the dictionary?

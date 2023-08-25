@@ -65,4 +65,5 @@ class World():
                         if (k >= 0 and k < self.size and l >= 0 and l < self.size and (k != i or l != j)):
                             neighbors.append(self.grid[k][l])
                 current_agent.set_neighbors(neighbors)
+                current_agent.forget()
 

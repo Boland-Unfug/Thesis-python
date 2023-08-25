@@ -16,7 +16,7 @@ class Selfless(agent.Agent):
         self.name = name
         self.score = 0
 
-    def strategy(self, opponent_memory):
+    def strategy(self, opponent):
         """
         The play method returns the move of the agent.
         It returns 'C' for defect.

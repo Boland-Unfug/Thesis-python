@@ -28,12 +28,13 @@ class Game():
         for agent in self.agents:
             self.play_neighbors(agent)
 
-    def play_neighbors(self):
+    def play_neighbors(self, agent):
         """
         The play method plays the game.
         It iterates through the agents and plays the game.
         """
-        for neighbors in self.agent.get_neighbors():
+        for neighbors in agent.get_neighbors():
+            print(neighbors.get_name())
             print("agent " + str(agent) + " is playing agent " + str(neighbors))
             self.duel(agent, neighbors)
 
@@ -44,18 +45,13 @@ class Game():
         It takes in two agents and plays the game between them.
         """
 
-        play_1 = agent.strategy(neighbor.get_memory())
-        play_2 = neighbor.strategy(agent.get_memory())
+        play_1 = agent.strategy(neighbor.get_name())
+        play_2 = neighbor.strategy(agent.get_name())
+        print("agent " + str(agent) + " is playing " + str(play_1))
+        print("agent " + str(neighbor) + " is playing " + str(play_2))
         score_1, score_2 = self.prisoners_dillema(play_1, play_2)
-        if (str(agent) == "Titfortat" and str(neighbor) == "Selfish") or (str(agent) == "Selfish" and str(neighbor) == "Titfortat"):
-            print("agent " + str(agent) + " is playing agent " + str(neighbor))
-            print("agent " + str(agent) + " is playing " + play_1)
-            print("agent " + str(neighbor) + " is playing " + play_2)
-            # time.sleep(5)
         agent.change_score(score_1)
         neighbor.change_score(score_2)
-        agent.forget_move()
-        neighbor.forget_move()
         state = (agent.get_name(), play_1, neighbor.get_name(), play_2)
         agent.memorize(state)
         neighbor.memorize(state)
@@ -82,4 +78,4 @@ class Game():
         elif move_1 == 'D' and move_2 == 'C':
             return 5, 0
         else:
-            return EOFError
+            return EOFError, EOFError
