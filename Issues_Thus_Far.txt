@@ -23,3 +23,5 @@ modify map to generate empty spaces X
 add movement
 add score/round X
 make it so that agents only play one game against each other
+
+finish mockup

@@ -20,7 +20,7 @@ def main():
         iteration = 0
         # create the agents
         for i in range(size*size):
-                if (random.randint(0, 1) == 1):
+                if (random.randint(0, 2) != 0):
                         agent_type = random.randint(1, 3)
 
                         if agent_type == 1:
@@ -45,9 +45,9 @@ def main():
                 
                 game_display.draw_agents(game_display.screen)
 
-                if iteration % 3 == 0:
-                        for agent in agents:
-                                agent.forget()
+                # if iteration % 0 == 0:
+                for agent in agents:
+                        agent.forget()
                 # update the neighbors
                 game_world.update_neighbors()
                 # play the game
