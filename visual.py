@@ -44,8 +44,9 @@ class Visual():
         """
         for i in range(self.cells):
             for j in range(self.cells):
-                self.draw_agent(i, j, screen)
-                self.label_agents(i, j, self.world.get_grid()[i][j], screen)
+                if self.world.get_grid()[i][j] != None:
+                    self.draw_agent(i, j, screen)
+                    self.label_agents(i, j, self.world.get_grid()[i][j], screen)
         self.flip()
 
     def draw_agent(self, x, y, screen):
@@ -62,7 +63,8 @@ class Visual():
 
     def label_agents(self, x, y, agent, screen):
         font = pygame.font.Font(None, 24)
-        text = font.render(str([str(agent),agent.score]), 1, (0,0,0))
+        # draw points
+        text = font.render(str([str(agent), agent.get_score()]), 1, (0,0,0))
         screen.blit(text, (x * self.cell_size, y * self.cell_size))
         pygame.display.flip()
 

@@ -34,8 +34,6 @@ class Game():
         It iterates through the agents and plays the game.
         """
         for neighbors in agent.get_neighbors():
-            print(neighbors.get_name())
-            print("agent " + str(agent) + " is playing agent " + str(neighbors))
             self.duel(agent, neighbors)
 
 
@@ -47,8 +45,8 @@ class Game():
 
         play_1 = agent.strategy(neighbor.get_name())
         play_2 = neighbor.strategy(agent.get_name())
-        print("agent " + str(agent) + " is playing " + str(play_1))
-        print("agent " + str(neighbor) + " is playing " + str(play_2))
+        # print("agent " + str(agent) + " is playing " + str(play_1))
+        # print("agent " + str(neighbor) + " is playing " + str(play_2))
         score_1, score_2 = self.prisoners_dillema(play_1, play_2)
         agent.change_score(score_1)
         neighbor.change_score(score_2)

@@ -14,7 +14,6 @@ class Selfish(agent.Agent):
         It sets the score of the agent to 0.
         """
         self.name = name
-        self.score = 0
 
     def strategy(self, opponent):
         """

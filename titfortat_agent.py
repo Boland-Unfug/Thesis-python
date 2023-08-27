@@ -15,7 +15,6 @@ class Titfortat(agent.Agent):
         It sets the score of the agent to 0.
         """
         self.name = name
-        self.score = 0
         self.memory = []
 
     def strategy(self, opponent):
@@ -25,8 +24,6 @@ class Titfortat(agent.Agent):
         """
         if self.memory == []:
             return 'C'
-        print(self.memory)
-
         self.memory.reverse()
         for agent1, play_1, agent2, play_2 in self.memory:
             if agent1 == opponent:

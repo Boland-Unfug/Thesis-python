@@ -10,4 +10,16 @@ so far I show the strategy and update the score
 I want to make the memory work for tit-for-tat, its due to it not remembering 'faces', but just having a general memory of neighbors
 
 to work on:
-make memory a hash map, where every agent is the key to a move in the dictionary?
+Python not found??? when I run python main.py. (just was not in the environment)
+Make agents forget X
+Enhance memory, look into hash tables/maps
+    only add a memory if it is either unique in general, or different from the last move.
+    alternatively, if im using maps, I could redirect the key to the same data.
+    Since there can be infinite memories, but finite moves, I could assign a new memory (key) to the same move.
+    make the agents hashable
+    add score to memory? probably, if I am going to be using it as a benchmark for the agents.
+    
+modify map to generate empty spaces X
+add movement
+add score/round X
+make it so that agents only play one game against each other
