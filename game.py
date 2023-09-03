@@ -5,6 +5,8 @@ import world
 import visual
 
 import time
+import pygame
+
 class Game():
     """
     The game class manages the payoff matrix, and includes helper functions for playing games between agents and groups.
@@ -43,28 +45,13 @@ class Game():
         self.world = world
         self.agents = agents
 
-    def play(self):
-        """
-        The play method plays the game. Mostly a wrapper for play_neighbors().
-        """
-        for i in range(self.rounds):
-            self.round_number = i
-            for agent in self.agents:
-                self.play_neighbors(agent)
 
-    def play_neighbors(self, agent):
-        """
-        The play_neighbors method plays the game between an agent and its neighbors.
-        """
-        for neighbor in agent.get_neighbors():
-            self.duel(agent, neighbor)
-
-
-    def duel(self, agent, neighbor):
+    def play(self, agent, neighbor):
         """
         The duel method plays the game between two agents.
         It takes in two agents and plays the game between them.
         """
+        print("Playing game")
         # sort the agents by name
         sorted_agents = sorted([agent.get_name(), neighbor.get_name()])
         # create a hash of the game

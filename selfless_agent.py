@@ -22,5 +22,6 @@ class Selfless(agent.Agent):
         """
         return 0
 
+
     def __str__(self):
-        ("Selfless")
+        return "Selfless"

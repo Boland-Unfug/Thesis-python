@@ -29,4 +29,4 @@ class Titfortat(agent.Agent):
 
 
     def __str__(self):
-        ("Titfortat")
+        return "Titfortat"

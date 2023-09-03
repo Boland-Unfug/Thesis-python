@@ -1,5 +1,4 @@
 # Description: This file contains the Agent class and its subclasses.
-import abc
 # The Agent class is the parent class for all agents. it contains the score.
 
 
@@ -24,8 +23,6 @@ class Agent():
     score = 0
     name = -1
     position = []
-    neighbors = []
-
     
     def __init__(self, name):
         pass
@@ -42,19 +39,13 @@ class Agent():
     def strategy(self):
         pass
 
-    def add_neighbor(self, neighbor):
-        self.neighbors.append(neighbor)
+    def move_strategy(self):
+        pass
 
-    def set_neighbors(self, neighbors):
-        self.neighbors = neighbors
-
-    def get_neighbors(self):
-        return self.neighbors
-
-    def set_xy(self, x, y):
+    def set_position(self, x, y):
         self.position = [x, y]
 
-    def get_xy(self):
+    def get_position(self):
         return self.position
 
     def get_name(self):
