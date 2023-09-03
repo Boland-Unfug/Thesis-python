@@ -21,34 +21,24 @@ class World():
     grid = []
     agents = []
     
-    def __init__(self, size=3):
+    def __init__(self, size=3, agents=[]):
         """
         The constructor for the world class.
         It crea
         tes a grid.
         """
         self.size = size
-        self.grid = [[0 for x in range(self.size)] for y in range(self.size)]
-        self.agents = []
-        for i in range(self.size):
-            for j in range(self.size):
-                self.add_agent()
-                self.grid[i][j] = self.agents[-1]
+        self.agents = agents
+        self.grid = [[None for x in range(self.size)] for y in range(self.size)]
+        for i in range(self.agents.__len__()):
+            while True:
+                x = random.randint(0, self.size-1)
+                y = random.randint(0, self.size-1)
+                if self.grid[x][y] == None:
+                    break
+            self.agents[i].set_xy(x, y)
+            self.grid[x][y] = self.agents[i]
 
-    def add_agent(self):
-        """
-        The add_agent method adds an agent to the grid.
-        It adds a random agent.
-        """
-        agent_type = random.randint(0,2)
-        if agent_type == 0:
-            self.agents.append(selfless_agent.Selfless())
-        elif agent_type == 1:
-            self.agents.append(selfish_agent.Selfish())
-        else:
-            self.agents.append(titfortat_agent.Titfortat())
-
-    
 
     def get_grid(self):
         """
@@ -72,13 +62,12 @@ class World():
         """
         The update_neighbors method updates the neighbors of the agents.
         """
-        for i in range(self.size):
-            for j in range(self.size):
-                current_agent = self.grid[i][j]
-                neighbors = []
-                for k in range(i-1, i+2):
-                    for l in range(j-1, j+2):
-                        if (k >= 0 and k < self.size and l >= 0 and l < self.size and (k != i or l != j)):
-                            neighbors.append(self.grid[k][l])
-                current_agent.set_neighbors(neighbors)
+        for agent in self.agents:
+            neighbors = []
+            x, y = agent.get_xy()
+            for i in range(x-1, x+2):
+                for j in range(y-1, y+2):
+                    if (i >= 0 and i < self.size and j >= 0 and j < self.size and (i != x or j != y) and self.grid[i][j] != None):
+                        neighbors.append(self.grid[i][j])
+            agent.set_neighbors(neighbors)
 

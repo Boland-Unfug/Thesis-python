@@ -8,14 +8,14 @@ class Selfish(agent.Agent):
     It inherits the score, the memory functions, and the helper functions of the Agent class.
     Its strategy is to always defect.
     """
-    def __init__(self):
+    def __init__(self, name):
         """
         The constructor for the selfish class.
         It sets the score of the agent to 0.
         """
-        self.score = 0
+        self.name = name
 
-    def strategy(self, opponent_memory):
+    def strategy(self, opponent):
         """
         The play method returns the move of the agent.
         It returns 'D' for defect.
