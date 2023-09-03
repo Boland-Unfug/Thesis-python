@@ -15,25 +15,18 @@ class Titfortat(agent.Agent):
         It sets the score of the agent to 0.
         """
         self.name = name
-        self.memory = []
 
-    def strategy(self, opponent):
+    def strategy(self, opponent, round_number):
         """
         The play method returns the move of the agent.
-        It returns 'C' for cooperate.
+        If it is the first round, it returns 0 for cooperate.
         """
-        if self.memory == []:
-            return 'C'
-        self.memory.reverse()
-        for agent1, play_1, agent2, play_2 in self.memory:
-            if agent1 == opponent:
-                self.memory.reverse()
-                return play_1
-            elif agent2 == opponent:
-                self.memory.reverse()
-                return play_2
-        self.memory.reverse()
-        return 'C'
+        game = self.create_hash(round_number-1, self.name, opponent) # get the previous game
+        if game == 2 or game == 4: # if the opponent defected last round, defect
+            return 1
+        else: # otherwise, cooperate
+            return 0
+
 
     def __str__(self):
-        return "Titfortat"
+        ("Titfortat")

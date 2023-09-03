@@ -15,12 +15,12 @@ class Selfish(agent.Agent):
         """
         self.name = name
 
-    def strategy(self, opponent):
+    def strategy(self, opponent, round_number):
         """
         The play method returns the move of the agent.
-        It returns 'D' for defect.
+        It returns 1 for defect.
         """
-        return 'D'
+        return 1
 
     def __str__(self):
-        return "Selfish"
+        ("Selfish")

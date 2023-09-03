@@ -15,12 +15,12 @@ class Selfless(agent.Agent):
         """
         self.name = name
 
-    def strategy(self, opponent):
+    def strategy(self, opponent, round_number):
         """
         The play method returns the move of the agent.
-        It returns 'C' for defect.
+        It returns 0 for cooperate.
         """
-        return 'C'
+        return 0
 
     def __str__(self):
-        return "Selfless"
+        ("Selfless")
