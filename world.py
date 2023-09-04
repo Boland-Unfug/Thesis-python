@@ -18,7 +18,7 @@ class World():
     # screen will be 600x600 pixels
 
 
-    def __init__(self, agents=[], world_size=600):
+    def __init__(self, agents=[], world_size=600, game=None):
         """
         The constructor for the world class.
         """
@@ -34,6 +34,8 @@ class World():
         # give each agent a random position
         for agent in self.agents:
             agent.set_position(random.randint(0, world_size), random.randint(0, world_size))
+        # create a game
+        self.game = game
 
     def draw_background(self, screen):
         """
@@ -74,11 +76,12 @@ class World():
         The update method updates the world.
         """
         self.move_agents()
+        self.collision_detection()
         self.draw_background(self.screen)
         self.draw_agents(self.screen)
         self.flip()
 
-    def collision_detection(self, game):
+    def collision_detection(self):
         """
         The collision_detection method detects collisions between agents.
         """
@@ -109,7 +112,7 @@ class World():
                     y1 + self.agents_size > y2 - self.agents_size and 
                     y1 - self.agents_size < y2 + self.agents_size):
                         # play a game between the two agents
-                        game.play(agent, other_agent)
+                        self.game.play(agent, other_agent)
                         # bounce them off each other by 5 pixels by finding the difference between their positions and adding/subtracting 5
                         agent.set_position(agent.get_position()[0] + 5, agent.get_position()[1] + 5)
                         other_agent.set_position(other_agent.get_position()[0] - 5, other_agent.get_position()[1] - 5)

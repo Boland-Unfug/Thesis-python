@@ -27,33 +27,23 @@ def main():
         elif agent_type == 3:
                 agents.append(titfortat_agent.Titfortat(name=i))
 
+    # start the game
+    game_instance = game.Game(agents=agents, rounds=rounds)
+
     # create the world
-    game_world = world.World(agents=agents, world_size=size)
+    game_world = world.World(agents=agents, world_size=size, game=game_instance)
 
     # draw the world
     game_world.draw_background(game_world.screen)
     game_world.draw_agents(game_world.screen)
 
-    # start the game
-    game_instance = game.Game(world=game_world, agents=agents, rounds=rounds)
+    
 
     # play the game
     # print("Playing game...")
     while True:
-        # update positions
-        # print("moving agents")
-        game_world.move_agents()
-        # check for collisions
-        # print("checking for collisions")
-        game_world.collision_detection(game_instance)
-        # draw the world
-        # print("drawing world")
-        game_world.draw_background(game_world.screen)
-        # print("drawing agents")
-        game_world.draw_agents(game_world.screen)
-        # flip the screen
-        # print("flipping screen")
-        game_world.flip()
+        # update
+        game_world.update()
         time.sleep(0.1)
 
 

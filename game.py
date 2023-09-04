@@ -2,7 +2,6 @@
 
 import agent
 import world
-import visual
 
 import time
 import pygame
@@ -19,11 +18,11 @@ class Game():
 
 
     
-    def __init__(self, world, agents, rounds):
+    def __init__(self, agents, rounds):
 
         """
         The constructor for the game class.
-        It creates a world and adds agents to it.
+        It sets the payoff matrix, the state matrix, and the history of the game.
         """
         self.history = {} # max size of possible games is 4,294,967,296 (one full 32 bit integer)
 
@@ -42,7 +41,6 @@ class Game():
         }
         self.rounds = rounds
         self.round_number = 0
-        self.world = world
         self.agents = agents
 
 
@@ -51,7 +49,7 @@ class Game():
         The duel method plays the game between two agents.
         It takes in two agents and plays the game between them.
         """
-        print("Playing game")
+
         # sort the agents by name
         sorted_agents = sorted([agent.get_name(), neighbor.get_name()])
         # create a hash of the game

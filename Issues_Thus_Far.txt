@@ -59,3 +59,13 @@ Instead of having a grid, I now have a list of agents.
 Instead of having neighbors, I now have them check for collisions with other agents, and then play the game with them.
 
 I used a a temporary file (pycirlces) to learn about how to make circles move around the screen, and then I used that knowledge to make this.
+
+new list of todos:
+Standardize docstrings
+Standardize & add comments
+Add more strategies
+Add more movement strategies
+Improve collision
+Add testability, through decorators for printing and time checking
+Add file output
+add data analysis

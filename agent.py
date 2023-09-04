@@ -1,7 +1,7 @@
 # Description: This file contains the Agent class and its subclasses.
 # The Agent class is the parent class for all agents. it contains the score.
 
-
+import random
 class Agent():
     """
     The Agent class is the parent class for all agents. 
@@ -40,7 +40,7 @@ class Agent():
         pass
 
     def move_strategy(self):
-        pass
+        return [random.randint(-10, 10), random.randint(-10, 10)]
 
     def set_position(self, x, y):
         self.position = [x, y]
