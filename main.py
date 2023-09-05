@@ -15,10 +15,10 @@ import agent
 def main():
     agents = []
     size = 600
-    rounds = 10 # max: 65,536
+    rounds = 100000 # max: 65,536
     
     # create the agents
-    for i in range(20):
+    for i in range(25):
         agent_type = random.randint(1, 3)
         if agent_type == 1:
                 agents.append(selfless_agent.Selfless(name=i))
@@ -45,7 +45,7 @@ def main():
         # update
         game_world.update()
         time.sleep(0.1)
-
+  
 
 
 

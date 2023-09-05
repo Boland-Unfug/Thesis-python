@@ -65,7 +65,11 @@ Standardize docstrings
 Standardize & add comments
 Add more strategies
 Add more movement strategies
+add drift X
+add momentum
 Improve collision
 Add testability, through decorators for printing and time checking
 Add file output
 add data analysis
+add downloadability/portability
+add command line args

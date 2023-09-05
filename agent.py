@@ -23,6 +23,7 @@ class Agent():
     score = 0
     name = -1
     position = []
+    direction = [0,0]
     
     def __init__(self, name):
         pass
@@ -40,7 +41,14 @@ class Agent():
         pass
 
     def move_strategy(self):
-        return [random.randint(-10, 10), random.randint(-10, 10)]
+        self.direction = [self.direction[0] + random.randint(-3, 3), self.direction[1] + random.randint(-3, 3)]
+        return self.direction
+
+    def get_direction(self):
+        return self.direction
+
+    def set_direction(self, direction):
+        self.direction = direction
 
     def set_position(self, x, y):
         self.position = [x, y]
@@ -52,17 +60,16 @@ class Agent():
         return self.name
 
     def create_hash(self, round_number, agent1, agent2):
-        #TODO: make this work for more than 256 agents
         """
         The create_hash method creates a hash of the game.
         It takes in the round number and the names of the two agents, which are sorted by name.
         It returns the hash of the game.
         The bit shifts are to make sure that the hash is unique
-        round bits: 16-31, agent1 bits: 8-15, agent2 bits: 0-7
-        meaning we can run 65536 rounds, and have 256 agents, or a grid of 16x16 agents
-        I will modify this later to allow for more agents
+        # 24 bits for rounds, max:16,777,216 (1 round for movement, 9 rounds for drifting)
+        # 20 bits for agent1, max:1,048,576
+        # 20 bits for agent2
         """
-        return (round_number << 16) + (agent1 << 8) + agent2
+        return (round_number << 40) + (agent1 << 20) + agent2
 
     def __str__(self):
         return ("None")
