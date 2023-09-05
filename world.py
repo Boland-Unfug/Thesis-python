@@ -30,7 +30,7 @@ class World():
         self.caption = pygame.display.set_caption("Prisoner's Dilemma")
         # create a list of agents
         self.agents = agents
-        self.agents_size = 10
+        self.agents_size = 20
         # give each agent a random position
         for agent in self.agents:
             agent.set_position(random.randint(0, world_size), random.randint(0, world_size))
@@ -68,13 +68,19 @@ class World():
         """
         for agent in self.agents:
             position = agent.get_position()
-            strategy = agent.move_strategy()
+            strategy = agent.get_direction()
+            if self.game.round_number % 1 == 0:
+                strategy = agent.move_strategy()
+                # print(strategy)
+            agent.set_direction(strategy[0] * 0.8, strategy[1] * 0.8)
             agent.set_position(position[0] + strategy[0], position[1] + strategy[1])
 
     def update(self):
         """
         The update method updates the world.
         """
+        self.game.round_number += 1
+        
         self.move_agents()
         self.collision_detection()
         self.draw_background(self.screen)
@@ -87,33 +93,45 @@ class World():
         """
         # TODO, improve the collision detection and bounce
         for agent in self.agents:
-            # boundry collision detection
-            if agent.get_position()[0] < 0:
-                agent.set_position(0, agent.get_position()[1])
-            if agent.get_position()[0] > self.world_size:
-                agent.set_position(self.world_size, agent.get_position()[1])
-            if agent.get_position()[1] < 0:
-                agent.set_position(agent.get_position()[0], 0)
-            if agent.get_position()[1] > self.world_size:
-                agent.set_position(agent.get_position()[0], self.world_size)
+
             # circle collision detection
-            for other_agent in self.agents:
-                if agent != other_agent:
-                    agent
-                    # X collision
-                    x1 = agent.get_position()[0]
-                    x2 = other_agent.get_position()[0]
-                    # Y collision
-                    y1 = agent.get_position()[1]
-                    y2 = other_agent.get_position()[1]
+            for agent2 in self.agents:
+                if agent != agent2:
+                    agent_position = agent.get_position()
+                    agent2_position = agent2.get_position()
                     
-                    if (x1 + self.agents_size > x2 - self.agents_size and 
-                    x1 - self.agents_size < x2 + self.agents_size and 
-                    y1 + self.agents_size > y2 - self.agents_size and 
-                    y1 - self.agents_size < y2 + self.agents_size):
-                        # play a game between the two agents
-                        self.game.play(agent, other_agent)
-                        # bounce them off each other by 5 pixels by finding the difference between their positions and adding/subtracting 5
-                        agent.set_position(agent.get_position()[0] + 5, agent.get_position()[1] + 5)
-                        other_agent.set_position(other_agent.get_position()[0] - 5, other_agent.get_position()[1] - 5)
-        
+                    x_diff = agent2_position[0] - agent_position[0] #This represents the difference in x coordinates.
+                    # if x_diff < 0: #If the difference is negative, then the second agent is to the left of the first agent.
+                    # if x_diff > 0: #If the difference is positive, then the second agent is to the right of the first agent.
+                    y_diff = agent2_position[1] - agent_position[1]
+
+                    if ((x_diff ** 2) + (y_diff ** 2)) <= (self.agents_size * 2)**2 + self.agents_size:
+
+                        agent.set_position(agent.get_position()[0] + self.agents_size, agent.get_position()[1] + self.agents_size)
+                        agent.set_direction(agent.get_direction()[0] + (agent.get_direction()[0] - x_diff),
+                                            agent.get_direction()[1] + (agent.get_direction()[1] - y_diff))
+
+
+
+
+            # boundry collision detection
+
+            # X collision
+            if agent.get_position()[0] - self.agents_size < 0:
+                agent.set_position(self.agents_size, agent.get_position()[1])
+                agent.set_direction(agent.get_direction()[0] * -1, agent.get_direction()[1])
+            if agent.get_position()[0] + self.agents_size> self.world_size:
+                agent.set_position(self.world_size - self.agents_size, agent.get_position()[1])
+                agent.set_direction(agent.get_direction()[0] * -1, agent.get_direction()[1])
+            # Y collision
+            if agent.get_position()[1] - self.agents_size < 0:
+                agent.set_position(agent.get_position()[0], self.agents_size)
+                agent.set_direction(agent.get_direction()[0], agent.get_direction()[1] * -1)
+            if agent.get_position()[1] + self.agents_size > self.world_size:
+                agent.set_position(agent.get_position()[0], self.world_size - self.agents_size)
+                agent.set_direction(agent.get_direction()[0], agent.get_direction()[1] * -1)
+
+            # agent.set_position(agent.get_position()[0] + agent.get_direction()[0], agent.get_position()[1] + agent.get_direction()[1])
+                        
+                        
+                        

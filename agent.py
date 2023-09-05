@@ -23,6 +23,7 @@ class Agent():
     score = 0
     name = -1
     position = []
+    direction = [0,0]
     
     def __init__(self, name):
         pass
@@ -40,7 +41,14 @@ class Agent():
         pass
 
     def move_strategy(self):
-        return [random.randint(-10, 10), random.randint(-10, 10)]
+        self.direction = [self.direction[0] + random.randint(-10,10), self.direction[1] + random.randint(-10,10)]
+        return self.direction
+
+    def set_direction(self, x, y):
+        self.direction = [x, y]
+
+    def get_direction(self):
+        return self.direction
 
     def set_position(self, x, y):
         self.position = [x, y]
