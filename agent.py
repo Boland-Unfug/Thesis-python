@@ -23,7 +23,8 @@ class Agent():
     score = 0
     name = -1
     position = []
-    direction = [0,0]
+    direction = [0, 0]
+    
     
     def __init__(self, name):
         pass
@@ -37,11 +38,14 @@ class Agent():
     def get_score(self):
         return self.score
 
+    def get_name(self):
+        return self.name
+
     def strategy(self):
         pass
 
-    def move_strategy(self):
-        self.direction = [self.direction[0] + random.randint(-3, 3), self.direction[1] + random.randint(-3, 3)]
+    def move(self):
+        self.direction = [self.direction[0] + random.randint(-10, 10), self.direction[1] + random.randint(-10, 10)]
         return self.direction
 
     def get_direction(self):
@@ -56,8 +60,7 @@ class Agent():
     def get_position(self):
         return self.position
 
-    def get_name(self):
-        return self.name
+
 
     def create_hash(self, round_number, agent1, agent2):
         """

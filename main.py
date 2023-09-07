@@ -44,7 +44,7 @@ def main():
     while True:
         # update
         game_world.update()
-        time.sleep(0.1)
+        time.sleep(0.05)
   
 
 
