@@ -3,57 +3,50 @@ import random
 import time
 import pygame
 
-import selfless_agent
-import selfish_agent
-import titfortat_agent
+
 import game
 import world
-import agent
+import agents_list
 
 
 
 def main():
     agents = []
     size = 600
-    rounds = 100000 # max: 65,536
+    rounds = 10000
+
+
+    # create the game instance
+    game_instance = game.Game(rounds=rounds)
     
     # create the agents
-    for i in range(25):
+    for i in range(20):
+        #agents.append(agents_list.selfish_chaser_agent.Selfish_Chaser(name=i, game_instance=game_instance))
+        
         agent_type = random.randint(1, 3)
         if agent_type == 1:
-                agents.append(selfless_agent.Selfless(name=i))
+                agents.append(agents_list.selfless_agent.Selfless(name=i))
         elif agent_type == 2:
-                agents.append(selfish_agent.Selfish(name=i))
+                agents.append(agents_list.selfish_agent.Selfish(name=i))
         elif agent_type == 3:
-                agents.append(titfortat_agent.Titfortat(name=i))
+                agents.append(agents_list.titfortat_agent.Titfortat(name=i, game_instance=game_instance))
 
-    # start the game
-    game_instance = game.Game(agents=agents, rounds=rounds)
-
-    # create the world
+    # create the world, using the game rules and the agents
     game_world = world.World(agents=agents, world_size=size, game=game_instance)
+    while rounds > game_world.game.get_round():
 
-    # draw the world
-    game_world.draw_background(game_world.screen)
-    game_world.draw_agents(game_world.screen)
+        game_world.update()
+        time.sleep(0.001)
+
+
+    print("Game Over")
+    for agent in agents:
+        print(agent.get_score())
+    pygame.quit()
+    results = data.Data(self.game, "results.csv")
+    results.write_to_file()
 
     
-
-    # play the game
-    # print("Playing game...")
-    while True:
-        # update
-        game_world.update()
-        time.sleep(0.05)
-  
-
-
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
 
 if __name__ == "__main__":
     main()

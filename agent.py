@@ -45,7 +45,7 @@ class Agent():
         pass
 
     def move(self):
-        self.direction = [self.direction[0] + random.randint(-10, 10), self.direction[1] + random.randint(-10, 10)]
+        self.direction = [self.direction[0] + random.randint(-10,10), self.direction[1] + random.randint(-10,10)]
         return self.direction
 
     def get_direction(self):

@@ -18,13 +18,14 @@ class Game():
 
 
     
-    def __init__(self, agents, rounds):
+    def __init__(self, rounds=10000):
 
         """
         The constructor for the game class.
         It sets the payoff matrix, the state matrix, and the history of the game.
         """
         self.history = {} # max size of possible games is 4,294,967,296 (one full 32 bit integer)
+        self.recent_history = {} # a dictionary of the last game for each agent
 
         self.payoff_matrix = {
         (0, 0): (3, 3),  # Cooperate/Cooperate
@@ -41,10 +42,10 @@ class Game():
         }
         self.rounds = rounds
         self.round_number = 0
-        self.agents = agents
 
 
-    def play(self, agent, neighbor):
+
+    def play(self, agent, neighbor, collision_point):
         """
         The duel method plays the game between two agents.
         It takes in two agents and plays the game between them.
@@ -58,17 +59,18 @@ class Game():
         if game_hash not in self.history:
             # play the game
             # get agent moves
-            play_1 = agent.strategy(neighbor.get_name(), self.get_round())
-            play_2 = neighbor.strategy(agent.get_name(), self.get_round())
+            play_1 = agent.strategy()
+            play_2 = neighbor.strategy()
             # get the resulting state
             state = self.get_state(play_1, play_2)
             # add the game to the history
-            self.history[game_hash] = state
+            self.history[game_hash] = state, collision_point
+            self.recent_history[agent.get_name()] = state, collision_point, self.get_round()
             # get resulting scores
             score_1, score_2 = self.get_payoff(play_1, play_2)
             # update the scores for the agents, remember they have been sorted
-            self.agents[sorted_agents[0]].change_score(score_1)
-            self.agents[sorted_agents[1]].change_score(score_2)
+            agent.change_score(score_1)
+            neighbor.change_score(score_2)
 
     def create_hash(self, round_number, agent1, agent2):
         """
@@ -81,7 +83,6 @@ class Game():
         # 20 bits for agent2
         """
         return (round_number << 40) + (agent1 << 20) + agent2
-        
 
     def get_payoff(self, action_1, action_2):
         """
@@ -114,6 +115,31 @@ class Game():
         The get_history method returns the history of the games played.
         """
         return self.history
+
+    def get_specific_history(self, game_hash):
+        """
+        The get_specific_history method returns the history of a specific game.
+        """
+        if (game_hash in self.history):
+            return self.history[game_hash]
+        #print("Game not found")
+        return None
+
+    def get_recent_history(self):
+        """
+        The get_recent_history method returns the history of the last game played by each agent.
+        """
+        return self.recent_history
+
+    def get_specific_recent_history(self, agent_name):
+        """
+        The get_specific_recent_history method returns the history of the last game played by a specific agent.
+        """
+        if (agent_name in self.recent_history):
+            return self.recent_history[agent_name]
+        #print("Game not found")
+        return None
+    
 
     def get_rounds(self):
         """

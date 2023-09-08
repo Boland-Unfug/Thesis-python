@@ -15,7 +15,7 @@ class Selfless(agent.Agent):
         """
         self.name = name
 
-    def strategy(self, opponent, round_number):
+    def strategy(self):
         """
         The play method returns the move of the agent.
         It returns 0 for cooperate.

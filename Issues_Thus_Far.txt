@@ -73,3 +73,44 @@ Add file output
 add data analysis
 add downloadability/portability
 add command line args
+
+
+New New list of todos:
+1. Add Movement strategies
+ - Chaser, takes the acceleration of their last collision
+ - runner, takes the opposite of their last collision
+ - random
+ - dodger, takes the opposite of their last collision, but randomizes one of the axis
+ - straight, always moves in the line it was moving in, still bounces off walls
+2. Add data analysis
+ - Add data to a file
+ - create a program that can graph the data
+3. Collision
+ - start with grid based
+ - add more from chatgpt if needed
+ - add a little collision visual
+ - prioritize quality
+4. Move to another language
+ - Ask about use of libraries
+ - refer back to https://www.youtube.com/watch?v=lS_qeBy3aQI, pezzzas work
+5. Hash function/ data structure
+ - The current hash still works, however it can be made more space efficient
+  - previous design: assigning bits for certain roles, specifically the round, agent1, and agent2. This made some blank space, but not much
+  - maybe it can be improved?
+
+This code produces an interesting mechanic where they occasionally merge together and collide frequently, which could be an interesting thing to explore.
+for agent in self.agents:
+            for agent2 in self.agents:
+                if agent != agent2:
+                    if (agent.get_position()[0] - agent2.get_position()[0])**2 + (agent.get_position()[1] - agent2.get_position()[1])**2 <= (self.agents_size*2)**2:
+                        agent.set_position(agent.get_position()[0] - agent.get_direction()[0], agent.get_position()[1] - agent.get_direction()[1])
+                        # agent2.set_position(agent2.get_position()[0] - agent2.get_direction()[0], agent2.get_position()[1] - agent2.get_direction()[1])
+                        self.game.play(agent, agent2)
+                        agent.set_direction([agent.get_direction()[0] * -1, agent.get_direction()[1] * -1])
+                        # agent2.set_direction([agent2.get_direction()[0] * -1, agent2.get_direction()[1] * -1])
+            if agent.get_position()[0] - self.agents_size <= 0 or agent.get_position()[0] + self.agents_size >= self.world_size:
+                agent.set_position(agent.get_position()[0] - agent.get_direction()[0], agent.get_position()[1])
+                # agent.set_direction([agent.get_direction()[0] * -1, agent.get_direction()[1]])
+            if agent.get_position()[1] - self.agents_size <= 0 or agent.get_position()[1] + self.agents_size >= self.world_size:
+                agent.set_position(agent.get_position()[0], agent.get_position()[1] - agent.get_direction()[1])
+                # agent.set_direction([agent.get_direction()[0], agent.get_direction()[1] * -1])
