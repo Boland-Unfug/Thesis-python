@@ -36,7 +36,7 @@ def main():
     while rounds > game_world.game.get_round():
 
         game_world.update()
-        time.sleep(0.001)
+        time.sleep(0.05)
 
 
     print("Game Over")
