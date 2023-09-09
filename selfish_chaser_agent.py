@@ -1,5 +1,7 @@
 # This file stores a variation of the selfish agent that will chase the last agent it collided with
 import selfish_agent
+import game
+import random
 class Selfish_Chaser (selfish_agent.Selfish):
     """
     The selfish chaser class is a subclass of the selfish class.
@@ -16,12 +18,19 @@ class Selfish_Chaser (selfish_agent.Selfish):
 
     
 
-    def move (self, opponent):
+    def move (self):
         # check the recent game instances for a match for the earliest collision
         # if there is a match, set the direction to the direction of the opponent
         # if there is no match, move randomly
 
         # get the most recent game instance
-        recent_game = self.game_instance.get_recent_history()
-        # traverse the history for the most recent collision
+        recent_game = self.game_instance.get_specific_recent_history(self.name)
+        # get the collision point
         
+        if recent_game == None:
+            # no collision
+            self.set_direction([random.randint(-10, 10), random.randint(-10, 10)])
+        else:
+            collision_point = recent_game[1]
+            # move towards the collision point
+            self.set_direction([collision_point[0] - self.get_position()[0], collision_point[1] - self.get_position()[1]])

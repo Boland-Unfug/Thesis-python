@@ -20,7 +20,7 @@ hash algorithm:
     I dedicate 16 bits for round, and 8 each for agent 1 and agent 2, and then bitshift the round 16 to the left and agent 1 to the right, before merging the bitspaces together.
     I also cut memory in half by always having player 1 be the agent with the lower ID, meaning I can infer agent without needing iti stored.
     This has given some really nice results, with processing speeds for gameplay being fast enough to not bottleneck the system.
-
+make it so that you can play any game, or at least change the rules for scores
 
 Time examples:
 

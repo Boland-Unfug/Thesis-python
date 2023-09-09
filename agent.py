@@ -4,75 +4,233 @@
 import random
 class Agent():
     """
-    The Agent class is the parent class for all agents. 
-    it contains the score, the memory of the agent, and the memory of the opponent, but cannot be instantiated.
-    it also includes several methods:
-    set_score() sets the score of the agent
-    get_score() returns the score of the agent
-    strategy() returns the move of the agent
-    add_neighbor() adds a neighbor to the agent
-    set_neighbors() sets the neighbors of the agent
-    get_neighbors() returns the neighbors of the agent
-    set_xy() sets the x and y coordinates of the agent
-    get_xy() returns the x and y coordinates of the agent
-    get_name() returns the name of the agent
-    create_hash() creates a hash of the game
-    __str__() returns the type and name of the agent
+    The Agent class functions as an interface for the actual agent subclasses.
+    It contains the helper functions of the Agent class.
+    This class is not designed to be used directly, but rather to be inherited by subclasses.
     """
 
-    score = 0
-    name = -1
-    position = []
-    direction = [0, 0]
+    score = 0 # default score is 0
+    name = -1 # start at -1 so that we can tell if there is an error
+    current_position = [0,0] # needed as the default value for the position
+    previous_position = [0,0] # needed as the default value for the position
+    direction = [0, 0] # needed as the default value for the direction
     
     
     def __init__(self, name):
+        """
+        Initializes an Agent object with a given name.
+        A name is required for each agent, as it functions as their unique identifier.
+
+        Parameters:
+        name (int): The name of the agent. Ints are used for the hash function, so the name must be an int.
+
+        Returns:
+        None
+        """
         pass
-    
-    def change_score(self, score):
-        self.score += score
-
-    def set_score(self, score):
-        self.score = score
-
-    def get_score(self):
-        return self.score
-
-    def get_name(self):
-        return self.name
 
     def strategy(self):
+        """
+        Returns the move of the agent.
+
+        Parameters:
+        None by default, inputs can be added for specific strategies.
+
+        Returns:
+        list: The move of the agent.
+        """
         pass
 
     def move(self):
+        #TODO: make this method more general
+        """
+        Updates the direction of the agent.  Random by default, will change later.
+
+        Parameters:
+        None
+
+        Returns:
+        list: The new direction of the agent.
+        """
         self.direction = [self.direction[0] + random.randint(-10,10), self.direction[1] + random.randint(-10,10)]
-        return self.direction
-
-    def get_direction(self):
-        return self.direction
-
-    def set_direction(self, direction):
-        self.direction = direction
-
-    def set_position(self, x, y):
-        self.position = [x, y]
-
-    def get_position(self):
-        return self.position
 
 
-
-    def create_hash(self, round_number, agent1, agent2):
-        """
-        The create_hash method creates a hash of the game.
-        It takes in the round number and the names of the two agents, which are sorted by name.
-        It returns the hash of the game.
-        The bit shifts are to make sure that the hash is unique
-        # 24 bits for rounds, max:16,777,216 (1 round for movement, 9 rounds for drifting)
-        # 20 bits for agent1, max:1,048,576
-        # 20 bits for agent2
-        """
-        return (round_number << 40) + (agent1 << 20) + agent2
 
     def __str__(self):
+        """
+        Returns the type and name of the agent for print statements.
+
+        Parameters:
+        None
+
+        Returns:
+        str: The type and name of the agent.
+        """
         return ("None")
+
+    def update_position(self):
+        """
+        Updates the position of the agent.
+
+        Parameters:
+        None
+
+        Returns:
+        None
+        """
+        self.previous_position = self.current_position
+        self.current_position = [self.current_position[0] + self.direction[0], self.current_position[1] + self.direction[1]]
+
+    # setters
+    def set_score(self, score):
+        """
+        Sets the score of the agent to a given value.
+
+        Parameters:
+        score (int): The value to set the score to.
+
+        Returns:
+        None
+        """
+        self.score = score
+
+    def set_direction(self, direction):
+        """
+        Sets the direction of the agent to a given value.
+
+        Parameters:
+        direction (list): The value to set the direction to.
+
+        Returns:
+        None
+        """
+        self.direction = direction
+
+
+    def set_direction_x(self, direction_x):
+        """
+        Sets the direction of the agent to a given x value.
+        
+        Parameters:
+        direction_x (int): The x component of the direction.
+
+        Returns:
+        None
+        """
+
+        self.direction[0] = direction_x
+
+    def set_direction_y(self, direction_y):
+        """
+        Sets the direction of the agent to a given y value.
+        
+        Parameters:
+        direction_y (int): The y component of the direction.
+
+        Returns:
+        None
+        """
+
+        self.direction[1] = direction_y
+
+    def set_position(self, position):
+        """
+        Sets the position of the agent to given x and y coordinates.
+
+        Parameters:
+        position (list): The x and y coordinates to set the position to.
+
+        Returns:
+        None
+        """
+        self.position = position
+
+    
+    def set_position_x(self, position_x):
+        """
+        Sets the position of the agent to a given x value.
+        
+        Parameters:
+        position_x (int): The x component of the position.
+
+        Returns:
+        None
+        """
+
+        self.position[0] = position_x
+
+    def set_position_y(self, position_y):
+        """
+        Sets the position of the agent to a given y value.
+        
+        Parameters:
+        position_y (int): The y component of the position.
+
+        Returns:
+        None
+        """
+
+        self.position[1] = position_y
+
+    # getters
+    
+    def get_name(self):
+        #TODO: make it so the name can be a string?
+        """
+        Returns the name of the agent.
+
+        Parameters:
+        None
+
+        Returns:
+        int: The name of the agent. Ints are used for the hash function, so the name must be an int.
+        """
+        return self.name
+
+    def get_score(self):
+        """
+        Returns the score of the agent.
+
+        Parameters:
+        None
+
+        Returns:
+        int: The score of the agent.
+        """
+        return self.score
+
+    def get_direction(self):
+        """
+        Returns the direction of the agent.
+
+        Parameters:
+        None
+
+        Returns:
+        list: The direction of the agent.
+        """
+        return self.direction
+
+    def get_position(self):
+        """
+        Returns the position of the agent.
+
+        Parameters:
+        None
+
+        Returns:
+        list: The position of the agent.
+        """
+        return self.position
+
+    def get_previous_position(self):
+        """
+        Returns the previous position of the agent.
+
+        Parameters:
+        None
+
+        Returns:
+        list: The previous position of the agent.
+        """
+        return self.previous_position

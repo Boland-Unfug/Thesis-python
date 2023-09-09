@@ -12,6 +12,7 @@ import random
 import pygame
 import time
 class World():
+    #TODO: for now, this class can be poorly designed. We can refactor it later.
     """
     The world class contains the agents, and manages the world
     """
@@ -20,7 +21,7 @@ class World():
     # screen will be 600x600 pixels
 
 
-    def __init__(self, agents=[], world_size=600, game=None):
+    def __init__(self, agents=[], world_size=600, agents_size= 20, game=None):
         """
         The constructor for the world class.
         """
@@ -28,14 +29,14 @@ class World():
         pygame.init()
         # create a screen
         self.world_size = world_size
-        self.screen = pygame.display.set_mode((world_size, world_size))
+        self.screen = pygame.display.set_mode((self.world_size, self.world_size))
         self.caption = pygame.display.set_caption("Prisoner's Dilemma")
         # create a list of agents
         self.agents = agents
-        self.agents_size = 20
+        self.agents_size = agents_size
         # give each agent a random position
         for agent in self.agents:
-            agent.set_position(random.randint(0, world_size), random.randint(0, world_size))
+            agent.set_position([random.randint(0, world_size), random.randint(0, world_size)])
         # create a game
         self.game = game
 
@@ -74,7 +75,8 @@ class World():
 
     def apply_strategies(self, agent):
         if self.game.round_number % 10 == 0:
-            agent.set_direction(agent.move())
+            agent.move()
+
 
     def move_agents(self):
         """
@@ -83,8 +85,9 @@ class World():
         for agent in self.agents:
             self.apply_strategies(agent)
             self.gravity(agent)
-            agent.set_position(agent.get_position()[0] + agent.get_direction()[0],
-             agent.get_position()[1]  + agent.get_direction()[1])
+            agent.move()
+            agent.update_position()
+            
 
     def update(self):
         """
@@ -113,31 +116,24 @@ class World():
                         # calculate a hashable collision point
                         collision_point = [agent.get_position()[0] - x_difference/2, agent.get_position()[1] - y_difference/2]
                         self.game.play(agent, agent2, collision_point=collision_point)
-                        # agent.set_position(agent.get_position()[0] + agent.get_direction()[0] + x_difference/4,
-                        #  agent.get_position()[1] + agent.get_direction()[1] + y_difference/4)
-                        # agent.set_direction([agent.get_direction()[0] * -1, agent.get_direction()[1] * -1])
-                        # agent2.set_position(agent2.get_position()[0] + agent2.get_direction()[0] - x_difference/4,
-                        #  agent2.get_position()[1] + agent2.get_direction()[1] - y_difference/4)
-                        # agent2.set_direction([agent2.get_direction()[0] * -1, agent2.get_direction()[1] * -1])
-                        #print("Collision")
                         
                         # friction
                         agent.set_direction([agent.get_direction()[0] * -1, agent.get_direction()[1] * -1])
                         agent2.set_direction([agent2.get_direction()[0] * -1, agent2.get_direction()[1] * -1])
-                        agent.set_position(agent.get_position()[0] + agent.get_direction()[0], agent.get_position()[1] + agent.get_direction()[1])
-                        agent2.set_position(agent2.get_position()[0] + agent2.get_direction()[0], agent2.get_position()[1] + agent2.get_direction()[1])
+                        agent.set_position([agent.get_position()[0] + agent.get_direction()[0], agent.get_position()[1] + agent.get_direction()[1]])
+                        agent2.set_position([agent2.get_position()[0] + agent2.get_direction()[0], agent2.get_position()[1] + agent2.get_direction()[1]])
                         
 
             if agent.get_position()[0] - self.agents_size <= 0:
-                agent.set_position(self.agents_size, agent.get_position()[1])
-                agent.set_direction([agent.get_direction()[0] * -1, agent.get_direction()[1]])
+                agent.set_position_x(self.agents_size)
+                agent.set_direction_x(agent.get_direction()[0] * -1)
             elif agent.get_position()[0] + self.agents_size >= self.world_size:
-                agent.set_position(self.world_size - self.agents_size, agent.get_position()[1])
-                agent.set_direction([agent.get_direction()[0] * -1, agent.get_direction()[1]])
+                agent.set_position_x(self.world_size - self.agents_size)
+                agent.set_direction_x(agent.get_direction()[0] * -1)
 
             if agent.get_position()[1] - self.agents_size <= 0:
-                agent.set_position(agent.get_position()[0], self.agents_size)
-                agent.set_direction([agent.get_direction()[0], agent.get_direction()[1] * -1])
+                agent.set_position_y(self.agents_size)
+                agent.set_direction_y(agent.get_direction()[1] * -1)
             elif agent.get_position()[1] + self.agents_size >= self.world_size:
-                agent.set_position(agent.get_position()[0], self.world_size - self.agents_size)
-                agent.set_direction([agent.get_direction()[0], agent.get_direction()[1] * -1])
+                agent.set_position_y(self.world_size - self.agents_size)
+                agent.set_direction_y(agent.get_direction()[1] * -1)
