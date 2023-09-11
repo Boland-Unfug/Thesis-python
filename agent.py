@@ -41,8 +41,7 @@ class Agent():
         """
         pass
 
-    def move(self):
-        #TODO: make this method more general
+    def update_direction(self):
         """
         Updates the direction of the agent.  Random by default, will change later.
 
@@ -50,7 +49,7 @@ class Agent():
         None
 
         Returns:
-        list: The new direction of the agent.
+        None
         """
         self.direction = [self.direction[0] + random.randint(-10,10), self.direction[1] + random.randint(-10,10)]
 
@@ -143,7 +142,7 @@ class Agent():
         Returns:
         None
         """
-        self.position = position
+        self.current_position = position
 
     
     def set_position_x(self, position_x):
@@ -157,7 +156,7 @@ class Agent():
         None
         """
 
-        self.position[0] = position_x
+        self.current_position[0] = position_x
 
     def set_position_y(self, position_y):
         """
@@ -170,7 +169,7 @@ class Agent():
         None
         """
 
-        self.position[1] = position_y
+        self.current_position[1] = position_y
 
     # getters
     
@@ -221,7 +220,7 @@ class Agent():
         Returns:
         list: The position of the agent.
         """
-        return self.position
+        return self.current_position
 
     def get_previous_position(self):
         """

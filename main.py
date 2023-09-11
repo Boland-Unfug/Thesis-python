@@ -22,7 +22,8 @@ def main():
     
     # create the agents
     for i in range(10):
-        agents.append(agents_list.selfish_chaser_agent.Selfish_Chaser(name=i, game_instance=game_instance))
+        #agents.append(agents_list.selfish_chaser_agent.Selfish_Chaser(name=i, game_instance=game_instance))
+        agents.append(agents_list.selfish_agent.Selfish(name=i))
         
         # agent_type = random.randint(1, 3)
         # if agent_type == 1:

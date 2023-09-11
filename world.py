@@ -37,6 +37,7 @@ class World():
         # give each agent a random position
         for agent in self.agents:
             agent.set_position([random.randint(0, world_size), random.randint(0, world_size)])
+            print(agent.get_position())
         # create a game
         self.game = game
 
@@ -69,13 +70,13 @@ class World():
         """
         The gravity method applies gravity to the agents.
         """
-        agent.set_direction([agent.get_direction()[0] * 0.9, agent.get_direction()[1] * 0.9])
+        agent.set_direction([agent.get_direction()[0] * 0.95, agent.get_direction()[1] * 0.95])
 
 
 
     def apply_strategies(self, agent):
         if self.game.round_number % 10 == 0:
-            agent.move()
+            agent.update_direction()
 
 
     def move_agents(self):
@@ -85,7 +86,6 @@ class World():
         for agent in self.agents:
             self.apply_strategies(agent)
             self.gravity(agent)
-            agent.move()
             agent.update_position()
             
 
