@@ -121,6 +121,7 @@ class Data():
         agents = np.unique(agents)
         print(agents)
         # make a list for each agents score each round, updating it if the agents score changes
+        # pretty much just need to fill all the scores for each agent for each round
         #TODO
         
         
