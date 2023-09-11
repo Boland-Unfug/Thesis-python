@@ -34,4 +34,10 @@ class Titfortat(agent.Agent):
             return 0
 
     def __str__(self):
+        return super().__str__() + " Titfortat"
+
+    def get_strategy(self):
         return "Titfortat"
+
+    def get_movement_strategy(self):
+        return "Random"

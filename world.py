@@ -37,7 +37,6 @@ class World():
         # give each agent a random position
         for agent in self.agents:
             agent.set_position([random.randint(0, world_size), random.randint(0, world_size)])
-            print(agent.get_position())
         # create a game
         self.game = game
 
@@ -52,11 +51,11 @@ class World():
         The draw_agents method draws the agents.
         """
         for agent in self.agents:
-            if str(agent) == "Selfless":
+            if agent.get_strategy() == "Selfless":
                 pygame.draw.circle(screen, (0, 255, 0), agent.get_position(), self.agents_size)
-            elif str(agent) == "Selfish":
+            elif agent.get_strategy() == "Selfish":
                 pygame.draw.circle(screen, (255, 0, 0), agent.get_position(), self.agents_size)
-            elif str(agent) == "Titfortat":
+            elif agent.get_strategy() == "Titfortat":
                 pygame.draw.circle(screen, (0, 0, 255), agent.get_position(), self.agents_size)
 
     def flip(self):
@@ -71,7 +70,6 @@ class World():
         The gravity method applies gravity to the agents.
         """
         agent.set_direction([agent.get_direction()[0] * 0.9, agent.get_direction()[1] * 0.9])
-
 
 
     def apply_strategies(self, agent):

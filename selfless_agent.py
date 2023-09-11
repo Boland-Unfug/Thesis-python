@@ -25,4 +25,10 @@ class Selfless(agent.Agent):
 
 
     def __str__(self):
+        return super().__str__() + " Titfortat"
+
+    def get_strategy(self):
         return "Selfless"
+
+    def get_movement_strategy(self):
+        return "Random"

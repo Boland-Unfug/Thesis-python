@@ -74,7 +74,7 @@ class Game():
             # get the resulting state
             state = self.get_state(play_1, play_2)
             # add the game to the history
-            self.history[game_hash] = state, collision_point
+            self.history[game_hash] = state, collision_point, agent.get_score(), neighbor.get_score()
             # print("Game played: " + str(game_hash))
             # print("Collision point: " + str(collision_point))
             self.recent_history[agent.get_name()] = state, collision_point, self.get_round()

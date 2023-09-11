@@ -7,6 +7,7 @@ import pygame
 import game
 import world
 import agents_list
+import data
 
 
 
@@ -42,11 +43,13 @@ def main():
 
 
     print("Game Over")
+    print("History" + str(game_instance.get_history()))
     for agent in agents:
         print(agent.get_score())
     pygame.quit()
-    results = data.Data(self.game, "results.csv")
-    results.write_to_file()
+    results = data.Data(game_instance)
+    results.fill_data()
+    
 
     
 

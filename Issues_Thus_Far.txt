@@ -86,18 +86,22 @@ seems to not be updating the recent history
 2. Add data analysis
  - Add data to a file
  - create a program that can graph the data
-3. Collision
+3. Add in default values and make everything variable.
+ - use name = self.name to allow for default values, and modifying them
+ - add a readme
+4. Collision
  - start with grid based
  - add more from chatgpt if needed
  - add a little collision visual
  - prioritize quality
-4. Move to another language
+5. Move to another language
  - Ask about use of libraries
  - refer back to https://www.youtube.com/watch?v=lS_qeBy3aQI, pezzzas work
-5. Hash function/ data structure
+6. Hash function/ data structure
  - The current hash still works, however it can be made more space efficient
   - previous design: assigning bits for certain roles, specifically the round, agent1, and agent2. This made some blank space, but not much
   - maybe it can be improved?
+7. Maybe machine learning?
 
 This code produces an interesting mechanic where they occasionally merge together and collide frequently, which could be an interesting thing to explore.
 for agent in self.agents:

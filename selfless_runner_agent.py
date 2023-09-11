@@ -52,4 +52,13 @@ class Selfless_Runner (selfless_agent.Selfless):
             self.run_direction = [self.direction[0] + force[0], self.direction[1] + force[1]]
             # set the direction to the force
             self.set_direction([self.direction[0] + force[0], self.direction[1] + force[1]])
+
+    def __str__(self):
+        return super().__str__() + " Runner"
+
+    def get_strategy(self):
+        return "Selfless"
+
+    def get_movement_strategy(self):
+        return "Runner"
             

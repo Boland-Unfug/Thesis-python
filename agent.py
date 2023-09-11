@@ -68,7 +68,7 @@ class Agent():
         Returns:
         str: The type and name of the agent.
         """
-        return ("None")
+        return "Agent " + str(self.name)
 
     def update_position(self):
         """
@@ -188,6 +188,30 @@ class Agent():
         int: The name of the agent. Ints are used for the hash function, so the name must be an int.
         """
         return self.name
+
+    def get_strategy(self):
+        """
+        Returns the strategy of the agent.
+
+        Parameters:
+        None
+
+        Returns:
+        str: The strategy of the agent.
+        """
+        return "None"
+
+    def get_movement_strategy(self):
+        """
+        Returns the movement strategy of the agent.
+
+        Parameters:
+        None
+
+        Returns:
+        str: The movement strategy of the agent.
+        """
+        return "Random"
 
     def get_score(self):
         """

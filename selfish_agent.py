@@ -23,4 +23,4 @@ class Selfish(agent.Agent):
         return 1
 
     def __str__(self):
-        return "Selfish"
+        return super().__str__() + " Selfish"
