@@ -15,7 +15,7 @@ def main():
     #TODO: add command args
     agents = []
     size = 600
-    rounds = 10000
+    rounds = 100
 
 
     # create the game instance
@@ -39,17 +39,16 @@ def main():
     while rounds > game_world.game.get_round():
 
         game_world.update()
-        time.sleep(0.05)
+        time.sleep(0.001)
 
 
     print("Game Over")
-    print("History" + str(game_instance.get_history()))
-    for agent in agents:
-        print(agent.get_score())
     pygame.quit()
-    results = data.Data(game_instance)
+    results = data.Data(game_instance, agents)
     results.fill_data()
-    
+    # print(results.get_data_summary())
+    # print(results.get_data())
+    results.score_line_chart()
 
     
 

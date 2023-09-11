@@ -78,6 +78,7 @@ class Game():
             # print("Game played: " + str(game_hash))
             # print("Collision point: " + str(collision_point))
             self.recent_history[agent.get_name()] = state, collision_point, self.get_round()
+            self.recent_history[neighbor.get_name()] = state, collision_point, self.get_round()
             # get resulting scores
             score_1, score_2 = Game.get_payoff(play_1, play_2)
             # update the scores for the agents, remember they have been sorted
@@ -129,6 +130,26 @@ class Game():
         """
 
         return Game.state_matrix[(action_1, action_2)]
+
+    def get_actions(self, state):
+        """
+        Gets the actions for the given state.
+
+        Parameters:
+        state (int): The state of the game.
+
+        Returns:
+        tuple: The actions for the given state.
+        """
+
+        if state == 1:
+            return (0, 0)
+        elif state == 2:
+            return (0, 1)
+        elif state == 3:
+            return (1, 0)
+        elif state == 4:
+            return (1, 1)
 
     def get_history(self):
         """

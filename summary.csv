@@ -1,0 +1,21 @@
+,Agent,Strategy,Movement Strategy,Score
+0,0,Selfish,Chaser,141
+1,1,Selfless,Runner,6
+2,2,Selfish,Chaser,80
+3,3,Selfless,Runner,222
+4,4,Selfless,Runner,225
+5,5,Selfless,Runner,12
+6,6,Selfish,Chaser,57
+7,7,Titfortat,Random,9
+8,8,Selfish,Chaser,95
+9,9,Titfortat,Random,15
+10,10,Selfless,Runner,21
+11,11,Selfless,Runner,9
+12,12,Selfish,Chaser,119
+13,13,Titfortat,Random,21
+14,14,Selfless,Runner,18
+15,15,Titfortat,Random,27
+16,16,Selfish,Chaser,90
+17,17,Selfless,Runner,12
+18,18,Titfortat,Random,39
+19,19,Selfish,Chaser,116
