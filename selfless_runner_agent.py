@@ -1,11 +1,11 @@
 # This file stores a variation of the selfish agent that will chase the last agent it collided with
-import selfish_agent
+import selfless_agent
 import game
 import random
-class Selfish_Chaser (selfish_agent.Selfish):
+class Selfless_Runner (selfless_agent.Selfless):
     """
-    The selfish chaser class is a subclass of the selfish class.
-    It always defects, but will chase the last agent it collided with.
+    The selfless runner class is a subclass of the selfless class.
+    It always cooperates, but will run away from the last agent it collided with.
     """
 
     def __init__(self, name, game_instance):
@@ -15,7 +15,7 @@ class Selfish_Chaser (selfish_agent.Selfish):
         """
         self.name = name
         self.game_instance = game_instance
-        self.chase_direction = [0, 0]
+        self.run_direction = [0, 0]
         
 
     
@@ -35,7 +35,7 @@ class Selfish_Chaser (selfish_agent.Selfish):
         
         elif self.game_instance.get_round() - recent_game[2] > 1: # chase for 19 rounds
             # move randomly
-            self.set_direction([self.chase_direction[0], self.chase_direction[1]])
+            self.set_direction([self.run_direction[0], self.run_direction[1]])
             
 
         
@@ -47,9 +47,9 @@ class Selfish_Chaser (selfish_agent.Selfish):
             self.collision_point = recent_game[1]
             # given the collision point, set the direction to the direction of the opponent
             # calculate the force by subtracting the collision point from the current position
-            force = [self.collision_point[0] - self.get_position()[0], self.collision_point[1] - self.get_position()[1]]
+            force = [-(self.collision_point[0] - self.get_position()[0]), -(self.collision_point[1] - self.get_position()[1])]
             # add the force to the chase direction
-            self.chase_direction = [self.direction[0] + force[0], self.direction[1] + force[1]]
+            self.run_direction = [self.direction[0] + force[0], self.direction[1] + force[1]]
             # set the direction to the force
             self.set_direction([self.direction[0] + force[0], self.direction[1] + force[1]])
             

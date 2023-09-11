@@ -21,6 +21,7 @@ class Selfless(agent.Agent):
         It returns 0 for cooperate.
         """
         return 0
+        
 
 
     def __str__(self):

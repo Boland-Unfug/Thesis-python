@@ -41,6 +41,9 @@ class Agent():
         """
         pass
 
+    def move_strategy(self):
+        self.update_direction()
+
     def update_direction(self):
         """
         Updates the direction of the agent.  Random by default, will change later.

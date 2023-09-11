@@ -76,10 +76,11 @@ add command line args
 
 
 New New list of todos:
+seems to not be updating the recent history
 1. Add Movement strategies
- - Chaser, takes the acceleration of their last collision
- - runner, takes the opposite of their last collision
- - random
+ - Chaser, takes the acceleration of their last collision X
+ - runner, takes the opposite of their last collision X
+ - random X, set as default strategy
  - dodger, takes the opposite of their last collision, but randomizes one of the axis
  - straight, always moves in the line it was moving in, still bounces off walls
 2. Add data analysis
