@@ -123,6 +123,51 @@ class Data():
         # make a list for each agents score each round, updating it if the agents score changes
         # pretty much just need to fill all the scores for each agent for each round
         #TODO
+        # make an empty pandas dataframe with the columns being the agents and the rows being the rounds, and fill them with 0s
+        scores_df = pd.DataFrame(0, index=rounds, columns=agents)
+        # now we iterate through, adding the score modifier to the score of the agent for that round
+        for index, row in data.iterrows():
+            # get the round, agent, and score modifier
+            round_number = row['Round']
+            agent = row['Agent']
+            score_modifier = row['Player 1 Reward']
+            # add the score modifier to the score of the agent for that round and all future rounds
+            scores_df.loc[round_number:, agent] += score_modifier
+
+            # now we do the same for the opponent, since each game has two agents
+            opponent = row['Opponent']
+            score_modifier = row['Player 2 Reward']
+            # add the score modifier to the score of the agent for that round and all future rounds
+            scores_df.loc[round_number:, opponent] += score_modifier
+
+        # now we graph
+        # make a plot for each agent
+        for agent in agents:
+            # get the scores of the agent
+            scores = scores_df[agent]
+            # plot the scores, color code by strategy
+            strategy = self.data_summary.loc[self.data_summary['Agent'] == agent]['Strategy']
+            # get the strategy
+            strategy = strategy.iloc[0]
+            print(strategy)
+            if strategy == 'Selfless':
+                plt.plot(rounds, scores, label=agent, color='g')
+            elif strategy == 'Selfish':
+                plt.plot(rounds, scores, label=agent, color='r')
+            elif strategy == 'Titfortat':
+                plt.plot(rounds, scores, label=agent, color='b')
+        # add a legend
+        plt.legend()
+        # add a title
+        plt.title("Scores of Agents Over Time")
+        # add x and y labels
+        plt.xlabel("Round")
+        plt.ylabel("Score")
+        # show the plot
+        plt.show()
+
+        print(scores_df)
+            
         
         
         

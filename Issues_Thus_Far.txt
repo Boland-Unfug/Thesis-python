@@ -84,8 +84,8 @@ seems to not be updating the recent history
  - dodger, takes the opposite of their last collision, but randomizes one of the axis
  - straight, always moves in the line it was moving in, still bounces off walls
 2. Add data analysis
- - Add data to a file
- - create a program that can graph the data
+ - Add data to a file X
+ - create a program that can graph the data X
 3. Add in default values and make everything variable.
  - use name = self.name to allow for default values, and modifying them
  - add a readme
@@ -102,6 +102,11 @@ seems to not be updating the recent history
   - previous design: assigning bits for certain roles, specifically the round, agent1, and agent2. This made some blank space, but not much
   - maybe it can be improved?
 7. Maybe machine learning?
+8. Improve visual queues
+ - for graphs, indicate strategy with color and movement strategy with line type
+ - for simulation, indicate strategy with color and movement strategy with border?
+
+ Reorganize TODOS, add them to the code directly
 
 This code produces an interesting mechanic where they occasionally merge together and collide frequently, which could be an interesting thing to explore.
 for agent in self.agents:
@@ -119,3 +124,56 @@ for agent in self.agents:
             if agent.get_position()[1] - self.agents_size <= 0 or agent.get_position()[1] + self.agents_size >= self.world_size:
                 agent.set_position(agent.get_position()[0], agent.get_position()[1] - agent.get_direction()[1])
                 # agent.set_direction([agent.get_direction()[0], agent.get_direction()[1] * -1])
+
+
+TODOS
+1. Move to C++
+ - New Design Method: Diagram, Prototype, Test, Implement, repeat
+ - scrum? swift? agile?
+ - look up design patterns
+ - RESEARCH, EXPERIMENT
+ - Ask about use of libraries
+    - refer back to https://www.youtube.com/watch?v=lS_qeBy3aQI, pezzzas work
+ - rebuild the agents, make sure to research and implement good practices
+  - design modularly
+  - use overloading/default values
+  - generalize classes so that I can put them together like lego in main, and then just run it
+   - possibly make it so I can run multiple at once?
+  - check SOLID principles
+  - add docs
+    - add tests
+    - add comments
+    - add a readme
+ - make video about the process so far and next steps
+
+2. Add Agent classes
+ - Use agent as a super class
+  - stores the get and set methods, name (since every agent needs an ID), score, position, and momentum.
+ - use strategies and movement strategies as an intermediary abstract class
+  - stores getter and setter methods for the strategy and movement strategy
+ - add strategies and movement strategies as sublcasses of their respective abstract classes
+
+ 2.a Add strategies:
+  - random, always picks random
+  - defector, always picks defect
+  - cooperator, always cooperates
+  - tit-for-tat, picks the last move the opponent played
+ 2.b Add movement strategies:
+  - random, always moves randomly
+  - chaser, moves towards the opponent/collision point (TBD)
+  - runner, moves away from the opponent/collision point (TBD)
+
+3. Game
+ - Create the hash system in C++
+ - Look to improve, but its pretty solid
+ - Mostly review that the hash stores the information I need
+
+3. Simulation
+ 3.a. Collision
+    - start with grid based collision
+    - add more from chatgpt if needed
+    - prioritize quality
+ 3.b. Allow for zoom
+    - allow for much larger map generation
+    - add panning
+
