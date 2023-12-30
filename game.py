@@ -152,4 +152,3 @@ class Game():
         The get_round method returns the current round.
         """
         return self.round_number
-        
