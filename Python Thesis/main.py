@@ -15,14 +15,14 @@ def main():
     #TODO: add command args
     agents = []
     size = 600
-    rounds = 100
+    rounds = 250
 
 
     # create the game instance
     game_instance = game.Game(rounds=rounds)
     
     # create the agents
-    for i in range(20):
+    for i in range(25):
         
         #agents.append(agents_list.selfish_agent.Selfish(name=i))
         

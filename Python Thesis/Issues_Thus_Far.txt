@@ -132,7 +132,7 @@ TODOS
  - scrum? swift? agile?
  - look up design patterns
  - RESEARCH, EXPERIMENT
- - Ask about use of libraries
+ - Ask about use of libraries X
     - refer back to https://www.youtube.com/watch?v=lS_qeBy3aQI, pezzzas work
  - rebuild the agents, make sure to research and implement good practices
   - design modularly
@@ -171,9 +171,10 @@ TODOS
 3. Simulation
  3.a. Collision
     - start with grid based collision
+    - add substepping
     - add more from chatgpt if needed
-    - prioritize quality
+    - use verlet
+    - prioritize collision accuracy
  3.b. Allow for zoom
     - allow for much larger map generation
     - add panning
-
