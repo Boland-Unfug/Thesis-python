@@ -63,14 +63,11 @@ class World():
         """
         pygame.display.flip()
 
-
     def gravity(self, agent):
         """
         The gravity method applies gravity to the agents.
         """
         agent.set_direction([agent.get_direction()[0] * 0.9, agent.get_direction()[1] * 0.9])
-
-
 
     def apply_strategies(self, agent):
         if self.game.round_number % 10 == 0:
@@ -97,7 +94,6 @@ class World():
             self.collision()
             self.draw_agents(self.screen)
             self.flip()
-
 
     def collision(self):
         """
