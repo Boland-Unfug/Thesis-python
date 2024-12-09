@@ -7,13 +7,14 @@ import pygame
 import game
 import world
 import agents_list
+import data
 
 
 
 def main():
     agents = []
     size = 600
-    rounds = 10000
+    rounds = 1000
 
 
     # create the game instance
@@ -36,14 +37,13 @@ def main():
     while rounds > game_world.game.get_round():
 
         game_world.update()
-        time.sleep(0.05)
 
 
     print("Game Over")
     for agent in agents:
         print(agent.get_score())
     pygame.quit()
-    results = data.Data(self.game, "results.csv")
+    results = data.Data(game_instance.get_history(), "results.csv")
     results.write_to_file()
 
     

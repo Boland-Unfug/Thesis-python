@@ -3,26 +3,22 @@ import pandas as pd
 import os
 
 class Data():
-    def __init__(self,game, name):
-        self.game = game
+    def __init__(self,history, name):
+        self.history = history
         self.name = name
         self.make_file(name)
         self.data = pd.DataFrame()
 
 
-    def make_file(self, name):
-        if not os.path.exists(name):
-            os.makedirs(name)
 
     def write_to_file(self):
         #create the file if it doesn't exist
-        self.makefile(self.name)
+        if not os.path.exists(name):
+            file = open(name, "x")
+            file.write(str(self.history))
+            file.close()
         #load the data
         self.data = pd.read_csv(self.name, index_col=0)
-        #add the new data
-        self.data = self.data.append(data, ignore_index=True)
-        #save the data
-        self.data.to_csv(name)
 
     def save(self, name, data):
         np.save(name, data)
