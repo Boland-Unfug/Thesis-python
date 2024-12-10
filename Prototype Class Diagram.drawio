@@ -136,13 +136,13 @@
         <mxCell id="kklQBV2uUnJuEIr_n-jg-29" value="+ setDirection(direction)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="kklQBV2uUnJuEIr_n-jg-20" vertex="1">
           <mxGeometry y="346" width="270" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="kklQBV2uUnJuEIr_n-jg-36" value="+ set_position(position)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="kklQBV2uUnJuEIr_n-jg-20" vertex="1">
+        <mxCell id="kklQBV2uUnJuEIr_n-jg-36" value="+ setPosition(position)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="kklQBV2uUnJuEIr_n-jg-20" vertex="1">
           <mxGeometry y="372" width="270" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="kklQBV2uUnJuEIr_n-jg-38" value="+ get_position():position" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="kklQBV2uUnJuEIr_n-jg-20" vertex="1">
+        <mxCell id="kklQBV2uUnJuEIr_n-jg-38" value="+ getPosition():position" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="kklQBV2uUnJuEIr_n-jg-20" vertex="1">
           <mxGeometry y="398" width="270" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="kklQBV2uUnJuEIr_n-jg-37" value="+ create_hash(round, agent1, agent2):hash" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="kklQBV2uUnJuEIr_n-jg-20" vertex="1">
+        <mxCell id="kklQBV2uUnJuEIr_n-jg-37" value="+ createHash(round, agent1, agent2):hash" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="kklQBV2uUnJuEIr_n-jg-20" vertex="1">
           <mxGeometry y="424" width="270" height="26" as="geometry" />
         </mxCell>
         <mxCell id="kklQBV2uUnJuEIr_n-jg-27" value="+ __str__(): None" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="kklQBV2uUnJuEIr_n-jg-20" vertex="1">
