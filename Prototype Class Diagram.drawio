@@ -121,7 +121,7 @@
         <mxCell id="kklQBV2uUnJuEIr_n-jg-34" value="+ tactic(): int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="kklQBV2uUnJuEIr_n-jg-20" vertex="1">
           <mxGeometry y="268" width="270" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="kklQBV2uUnJuEIr_n-jg-32" value="+ move(): direction" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="kklQBV2uUnJuEIr_n-jg-20" vertex="1">
+        <mxCell id="kklQBV2uUnJuEIr_n-jg-32" value="+ maneuver(): direction" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="kklQBV2uUnJuEIr_n-jg-20" vertex="1">
           <mxGeometry y="294" width="270" height="26" as="geometry" />
         </mxCell>
         <mxCell id="kklQBV2uUnJuEIr_n-jg-30" value="+ getDirection(): direction" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="kklQBV2uUnJuEIr_n-jg-20" vertex="1">
